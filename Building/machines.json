@@ -1,0 +1,706 @@
+[
+    {
+        "machine_type": 0,
+        "machine_id": "312788777489",
+        "state": 0,
+        "building_code": "312",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "312487516561",
+        "state": 0,
+        "building_code": "312",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "312730272390",
+        "state": 0,
+        "building_code": "312",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "312781423806",
+        "state": 0,
+        "building_code": "312",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "312609628866",
+        "state": 0,
+        "building_code": "312",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "312477966507",
+        "state": 0,
+        "building_code": "312",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "312785600990",
+        "state": 0,
+        "building_code": "312",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "312593216976",
+        "state": 0,
+        "building_code": "312",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "527841108176",
+        "state": 0,
+        "building_code": "527",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "527288306196",
+        "state": 0,
+        "building_code": "527",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "527687296154",
+        "state": 0,
+        "building_code": "527",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "527796409038",
+        "state": 0,
+        "building_code": "527",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "527264154738",
+        "state": 0,
+        "building_code": "527",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "527133977508",
+        "state": 0,
+        "building_code": "527",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "527630121992",
+        "state": 0,
+        "building_code": "527",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "527789973755",
+        "state": 0,
+        "building_code": "527",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "684874558461",
+        "state": 0,
+        "building_code": "684",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "684219953527",
+        "state": 0,
+        "building_code": "684",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "684280528919",
+        "state": 0,
+        "building_code": "684",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "684868182298",
+        "state": 0,
+        "building_code": "684",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "684419024332",
+        "state": 0,
+        "building_code": "684",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "684700320540",
+        "state": 0,
+        "building_code": "684",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "684875667477",
+        "state": 0,
+        "building_code": "684",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "684301629257",
+        "state": 0,
+        "building_code": "684",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "159170105850",
+        "state": 0,
+        "building_code": "159",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "159108102416",
+        "state": 0,
+        "building_code": "159",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "159764274514",
+        "state": 0,
+        "building_code": "159",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "159910722266",
+        "state": 0,
+        "building_code": "159",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "159337971300",
+        "state": 0,
+        "building_code": "159",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "159554395036",
+        "state": 0,
+        "building_code": "159",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "159699775883",
+        "state": 0,
+        "building_code": "159",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "159728634641",
+        "state": 0,
+        "building_code": "159",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "426256629331",
+        "state": 0,
+        "building_code": "426",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "426649590457",
+        "state": 0,
+        "building_code": "426",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "426653991943",
+        "state": 0,
+        "building_code": "426",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "426227120582",
+        "state": 0,
+        "building_code": "426",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "426947576544",
+        "state": 0,
+        "building_code": "426",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "426648672401",
+        "state": 0,
+        "building_code": "426",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "426992490094",
+        "state": 0,
+        "building_code": "426",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "426939568947",
+        "state": 0,
+        "building_code": "426",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "738929042321",
+        "state": 0,
+        "building_code": "738",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "738564055934",
+        "state": 0,
+        "building_code": "738",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "738294592377",
+        "state": 0,
+        "building_code": "738",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "738340322924",
+        "state": 0,
+        "building_code": "738",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "738146460365",
+        "state": 0,
+        "building_code": "738",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "738121171332",
+        "state": 0,
+        "building_code": "738",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "738403992138",
+        "state": 0,
+        "building_code": "738",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "738175266184",
+        "state": 0,
+        "building_code": "738",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "893789738740",
+        "state": 0,
+        "building_code": "893",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "893126955492",
+        "state": 0,
+        "building_code": "893",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "893135926464",
+        "state": 0,
+        "building_code": "893",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "893153458669",
+        "state": 0,
+        "building_code": "893",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "893453035143",
+        "state": 0,
+        "building_code": "893",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "893837932984",
+        "state": 0,
+        "building_code": "893",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "893458276283",
+        "state": 0,
+        "building_code": "893",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "893973787993",
+        "state": 0,
+        "building_code": "893",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "241623458421",
+        "state": 0,
+        "building_code": "241",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "241990232998",
+        "state": 0,
+        "building_code": "241",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "241357090050",
+        "state": 0,
+        "building_code": "241",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "241324897901",
+        "state": 0,
+        "building_code": "241",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "241507023184",
+        "state": 0,
+        "building_code": "241",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "241892320187",
+        "state": 0,
+        "building_code": "241",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "241382218281",
+        "state": 0,
+        "building_code": "241",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "241996522872",
+        "state": 0,
+        "building_code": "241",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "675320514347",
+        "state": 0,
+        "building_code": "675",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "675526424733",
+        "state": 0,
+        "building_code": "675",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "675893538362",
+        "state": 0,
+        "building_code": "675",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "675150299969",
+        "state": 0,
+        "building_code": "675",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "675991731541",
+        "state": 0,
+        "building_code": "675",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "675648739054",
+        "state": 0,
+        "building_code": "675",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "675561372565",
+        "state": 0,
+        "building_code": "675",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "675553870445",
+        "state": 0,
+        "building_code": "675",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "508340504618",
+        "state": 0,
+        "building_code": "508",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "508149635131",
+        "state": 0,
+        "building_code": "508",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "508633714863",
+        "state": 0,
+        "building_code": "508",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "508307412538",
+        "state": 0,
+        "building_code": "508",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "508540937010",
+        "state": 0,
+        "building_code": "508",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "508303565569",
+        "state": 0,
+        "building_code": "508",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "508777436999",
+        "state": 0,
+        "building_code": "508",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "508251538071",
+        "state": 0,
+        "building_code": "508",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "369363202043",
+        "state": 0,
+        "building_code": "369",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "369408636228",
+        "state": 0,
+        "building_code": "369",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "369536159971",
+        "state": 0,
+        "building_code": "369",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 0,
+        "machine_id": "369762937124",
+        "state": 0,
+        "building_code": "369",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "369656765676",
+        "state": 0,
+        "building_code": "369",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "369827974184",
+        "state": 0,
+        "building_code": "369",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "369618697243",
+        "state": 0,
+        "building_code": "369",
+        "machine_style": null,
+        "state_time": 1740262134
+    },
+    {
+        "machine_type": 1,
+        "machine_id": "369346679038",
+        "state": 0,
+        "building_code": "369",
+        "machine_style": null,
+        "state_time": 1740262134
+    }
+]

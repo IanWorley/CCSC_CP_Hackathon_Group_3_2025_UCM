@@ -1,8 +1,18 @@
 from flask import Flask, request, jsonify
 import sqlite3
 import requests
+import os
 
 app = Flask(__name__)
+
+# Get the absolute path to the database file
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATABASE_PATH = os.path.join(BASE_DIR, 'database.db')
+
+def get_db_connection():
+    conn = sqlite3.connect(DATABASE_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -22,58 +32,64 @@ def add_user():
 
 @app.route('/machines', methods=['GET'])
 def get_machines():
-    return jsonify(get_washing_machines())
+    location = request.args.get('location')
+    machines = fetch_washing_machines(location)
+    return jsonify(machines)
 
 def main():
-    conn = sqlite3.connect('./backend/database.db')
     seeding()
     app.run(port=443)
 
 def seeding():
-    conn = sqlite3.connect('./backend/database.db')
+    conn = get_db_connection()
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT)''')
-    c.execute('''CREATE TABLE IF NOT EXISTS machines (type TEXT, id TEXT, state TEXT, state_time INTEGER)''')
+    c.execute('''CREATE TABLE IF NOT EXISTS machines (type TEXT, id TEXT, state TEXT, state_time INTEGER, location TEXT)''')
     c.execute('''INSERT INTO users (username, password) VALUES ('admin', 'admin')''')
 
-    response = requests.get('http://127.0.0.1:5000/machines')
+    response = requests.get('http://127.0.0.1:8080/machines')
     machines = response.json()
 
-    # Insert machine data into the database
     for machine in machines:
-        c.execute('''INSERT INTO machines (type, id, state, state_time) VALUES (?, ?, ?, ?)''', 
-                  (machine['type'], machine['id'], machine['state'], machine['state_time']))
+        c.execute('''INSERT INTO machines (type, id, state, state_time, location) VALUES (?, ?, ?, ?, ?)''', 
+                  (machine['machine_type'], machine['machine_id'], machine['state'], machine['state_time'], machine['building_code']))
+        
         
     conn.commit()
     conn.close()
 
 def login_user(username: str, password: str):
-    conn = sqlite3.connect('./backend/database.db')
+    conn = get_db_connection()
     c = conn.cursor()
     c.execute('''SELECT * FROM users WHERE username = ? AND password = ?''', (username, password))
     user = c.fetchone()
     conn.close()
     return user is not None
 
-def get_washing_machines():
-    conn = sqlite3.connect('./backend/database.db')
+def fetch_washing_machines(location=None):
+    conn = get_db_connection()
     c = conn.cursor()
-    machines = c.execute('''SELECT * FROM machines''').fetchall()
+    if location:
+        c.execute('''SELECT * FROM machines WHERE location = ?''', (location,))
+    else:
+        c.execute('''SELECT * FROM machines''')
+    machines = c.fetchall()
     
     # Convert the tuple results into a list of dictionaries
     machine_list = []
     for machine in machines:
         machine_list.append({
-            'type': machine[0],
-            'id': machine[1],
-            'state': machine[2],
-            'state_time': machine[3]
+            'type': machine['type'],
+            'id': machine['id'],
+            'state': machine['state'],
+            'state_time': machine['state_time'],
+            'location': machine['location']
         })
     conn.close()
     return machine_list
 
 def add_user_to_db(username: str, password: str):
-    conn = sqlite3.connect('./backend/database.db')
+    conn = get_db_connection()
     c = conn.cursor()
     c.execute('''INSERT INTO users (username, password) VALUES (?, ?)''', (username, password))
     conn.commit()
