@@ -7,7 +7,8 @@ function Index() {
   useEffect(() => {
     fetch("/api/machines")
       .then((res) => res.json())
-      .then((data) => setMachines(data));
+      .then((data) => setMachines(data))
+      .catch((err) => console.error(err, "Error fetching machines"));
   }, []);
 
   return (
