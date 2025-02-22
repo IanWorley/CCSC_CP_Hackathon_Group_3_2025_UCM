@@ -1,27 +1,37 @@
 
+from flask import Flask, request, jsonify
+from Seeding import Seeding
+from Login import login , Adduser
 
-import sqlite3
-import requests
+
+
+app = Flask(__name__)
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data['username']
+    password = data['password']
+    login = login(username, password)
+    return jsonify({'login': login.login()})
+@app.route('/adduser', methods=['POST'])
+def adduser():
+    data = request.get_json()
+    username = data['username']
+    password = data['password']
+    Adduser(username, password)
+    return jsonify({'success': True})
+
+@app.route('/machines', methods=['GET'])
+def get_washing_machines():
+    return jsonify([vars(machine) for machine in machines])
+
 
 def main():
-    conn = sqlite3.connect('./backend/database.db')
-    c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT)''')
-    c.execute('''CREATE TABLE IF NOT EXISTS machines (type TEXT, id TEXT, state TEXT, state_time INTEGER)''')
-    c.execute('''insert into users values ('admin', 'admin')''')
-
-    response = requests.get('http://127.0.0.1:5000/machines')
-    machines = response.json()
-    print(machines)
-
-    # Insert machine data into the database
-    for machine in machines:
-        c.execute('''INSERT INTO machines VALUES (?, ?, ?, ?)''', 
-                  (machine['type'], machine['id'], machine['state'], machine['state_time']))
-
-
-    conn.commit()
-    conn.close()
+    Seeding()
+    app.run(port=443)
+    
 
 if __name__ == '__main__':
     main()
