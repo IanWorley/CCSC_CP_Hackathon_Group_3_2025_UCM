@@ -10,66 +10,85 @@
 
 // Import Routes
 
-import { Route as rootRoute } from "./routes/__root";
-import { Route as IndexImport } from "./routes/index";
+import { Route as rootRoute } from './routes/__root'
+import { Route as IndexImport } from './routes/index'
+import { Route as MachineIdImport } from './routes/machine/$id'
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
+
+const MachineIdRoute = MachineIdImport.update({
+  id: '/machine/$id',
+  path: '/machine/$id',
+  getParentRoute: () => rootRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/machine/$id': {
+      id: '/machine/$id'
+      path: '/machine/$id'
+      fullPath: '/machine/$id'
+      preLoaderRoute: typeof MachineIdImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
+  '/': typeof IndexRoute
+  '/machine/$id': typeof MachineIdRoute
 }
 
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
+  '/': typeof IndexRoute
+  '/machine/$id': typeof MachineIdRoute
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  "/": typeof IndexRoute;
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/machine/$id': typeof MachineIdRoute
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/";
-  fileRoutesByTo: FileRoutesByTo;
-  to: "/";
-  id: "__root__" | "/";
-  fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/machine/$id'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/machine/$id'
+  id: '__root__' | '/' | '/machine/$id'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
+  IndexRoute: typeof IndexRoute
+  MachineIdRoute: typeof MachineIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-};
+  MachineIdRoute: MachineIdRoute,
+}
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
 /* ROUTE_MANIFEST_START
 {
@@ -77,11 +96,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/machine/$id"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/machine/$id": {
+      "filePath": "machine/$id.tsx"
     }
   }
 }
