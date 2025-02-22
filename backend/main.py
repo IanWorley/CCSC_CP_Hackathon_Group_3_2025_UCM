@@ -30,28 +30,16 @@ def add_user():
     add_user_to_db(username, password)
     return jsonify({'status': 'success'})
 
-@app.route('/machines', methods=['GET'])
+@app.route('/machines', methods=['GET']) # http://127.0.0.1:443//machines?location=312
 def get_machines():
     location = request.args.get('location')
     machines = fetch_washing_machines(location)
     return jsonify(machines)
 
-@app.route('/machine', methods=['GET'])
-def get_machine():
-    # Get the location query parameter from the URL
-    location = request.args.get('location')
-    
-    if not location:
-        return jsonify({"error": "Location parameter is required"}), 400
-    
-    # Fetch the machines for the given location (implement the logic in fetch_washing_machines)
-    machines = fetch_washing_machines(location)
-    
-    return jsonify(machines)
 
 def main():
     seeding()
-    app.run(port=443)
+    app.run(port=8080)
 
 def seeding():
     conn = get_db_connection()
