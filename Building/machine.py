@@ -1,18 +1,22 @@
 from flask import Flask, jsonify, abort
-import random
-import time
+from random import random
+from time import time
+from enum import Enum
+
+#constants for the machine states
+class MachineStates(Enum):
+    IDLE = 0
+    WASHING = 1
+    FINISHED = 2
+    RESERVED = 3
+    LOCKED = 4
+
+#constants for machine type
+class MachineType(Enum):
+    WASHER = 0
+    DRYER = 1
 
 app = Flask(__name__)
-
-# Define constants
-IDLE = "idle"
-WASHING = "washing"
-FINISHED = "finished"
-RESERVED = "reserved"
-LOCKED = "locked"
-
-WASHER = "washer"
-DRYER = "dryer"
 
 # Machine class
 class Machine:
