@@ -4,14 +4,18 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
 	"strconv"
 	"time"
 )
 
 type Status string
+type Type string
 
 const (
+	washer Type = "washer"
+	dryer Type = "dryer"	
 	Idle     Status = "idle"
 	Washing  Status = "washing"
 	Finished Status = "finished"
@@ -19,13 +23,14 @@ const (
 	Locked   Status = "locked"
 )
 
-type WashingMachine struct {
-	ID         int
+type Machine struct {
+	Type	   Type
+	ID         string
 	State      Status
 	State_time int
 }
 
-var washingMachines = []WashingMachine{}
+var Machines = []Machine{}
 
 func main() {
 
@@ -35,17 +40,21 @@ func main() {
 
 	log.Print("Server is running on port 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
-	
+
 	fmt.Println("Server is running on port 8080")
 }
 
 func initWashingMachines() {
-	for i := 0; i < 10; i++ {
-		washingMachines = append(washingMachines, WashingMachine{
-			ID:         i,
-			State:      Idle,
-			State_time: int(time.Now().Unix()),
-		})
+	rand.Seed(time.Now().UnixNano()) // Seed the random number generator
+	for building := 0; building < 10; building++ {
+		randomNumber := rand.Intn(101) // Generate a random number between 0 and 100 for the building
+		for machine := 0; machine < 10; machine++ {
+			washingMachines = append(washingMachines, WashingMachine{
+				ID:         strconv.Itoa(randomNumber) +"0" +strconv.Itoa(machine), // Combine building number and machine number
+				State:      Idle,
+				State_time: int(time.Now().Unix()),
+			})
+		}
 	}
 }
 
