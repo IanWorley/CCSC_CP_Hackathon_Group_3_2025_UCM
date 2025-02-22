@@ -31,7 +31,23 @@ function Login() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    const loginFn = async () => {
+      const res = await fetch("/login", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (res.ok) {
+        console.log("Login successful");
+      } else {
+        alert("Invalid credentials");
+      }
+    };
+    loginFn();
+    form.reset();
   }
 
   return (
