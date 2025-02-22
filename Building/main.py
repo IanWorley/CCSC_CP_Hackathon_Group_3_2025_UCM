@@ -119,18 +119,6 @@ machines = load_machines()
 if not os.path.exists(MACHINE_FILE):
     save_machines(machines)
 
-    '''random.seed(time.time())  # Seed the random number generator
-    for building in range(10):  # Simulate 10 buildings
-        random_number = random.randint(0, 100)  # Generate a random number for the building
-        for machine in range(10):  # Simulate 10 machines per building
-            machine_id = f"{random_number}0{machine}"  # Combine building and machine number
-            machines.append(Machine(
-                machine_type=MachineType.WASHER.value,  # Type of the machine (washer or dryer, 0 or 1 respectively)
-                machine_id=machine_id,
-                state=MachineStates.IDLE.value,  # Initial state is idle, aka 0
-                state_time=int(time.time())  # Timestamp of state change
-            ))'''
-
 @app.route('/machines', methods=['GET'])
 def get_washing_machines():
     return jsonify([vars(machine) for machine in machines])
@@ -138,10 +126,17 @@ def get_washing_machines():
 @app.route('/machine/<id>', methods=['GET'])
 def get_washing_machine(id):
     # Search for machine by ID
-    machine = next((machine for machine in machines if machine.id == id), None)
+    machine = next((m for m in machines if m.machine_id == id), None)
     if machine is None:
         abort(404, description="Machine not found")
-    return jsonify(vars(machine))
+    return jsonify({
+        "machine_type": machine.machine_type,
+        "machine_id": machine.machine_id,
+        "state": machine.state,
+        "building_code": machine.building_code,
+        "machine_style": machine.machine_style,
+        "state_time": machine.state_time
+    })
 
 @app.route('/')
 def default_route():
