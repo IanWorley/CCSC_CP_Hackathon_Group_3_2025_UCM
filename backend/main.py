@@ -56,20 +56,47 @@ def main():
 def seeding():
     conn = get_db_connection()
     c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT)''')
-    c.execute('''CREATE TABLE IF NOT EXISTS machines (type TEXT, id TEXT, state TEXT, state_time INTEGER, location TEXT)''')
+    
+    # Corrected the CREATE TABLE statement for the users table
+    c.execute('''CREATE TABLE IF NOT EXISTS users 
+                 (username TEXT, password TEXT, student_id INTEGER, email TEXT)''')
+    
+    c.execute('''CREATE TABLE IF NOT EXISTS machines 
+                 (type TEXT, id TEXT, state TEXT, state_time INTEGER, location TEXT, run_time TEXT)''')
+    
+    # Insert a default admin user
     c.execute('''INSERT INTO users (username, password) VALUES ('admin', 'admin')''')
 
+    # Fetch machines from the external API
     response = requests.get('http://127.0.0.1:8080/machines')
+    
+    # Print the API response to inspect its structure
+    print("API Response:", response.json())
+    
     machines = response.json()
 
+    # Insert fetched machines into the machines table
     for machine in machines:
-        c.execute('''INSERT INTO machines (type, id, state, state_time, location) VALUES (?, ?, ?, ?, ?)''', 
-                  (machine['machine_type'], machine['machine_id'], machine['state'], machine['state_time'], machine['building_code']))
-        
-        
+        try:
+            c.execute('''INSERT INTO machines (type, id, state, state_time, location, run_time) 
+                         VALUES (?, ?, ?, ?, ?, ?)''', 
+                      (machine['type'], machine['id'], machine['state'], machine['state_time'], machine['location'], machine['run_time']))
+        except KeyError as e:
+            print(f"KeyError: Missing key in machine data - {e}")
+            print("Problematic machine data:", machine)
+            continue  # Skip this machine and continue with the next one
+
+    # Fetch and print all machines from the database
+    c.execute('''SELECT * FROM machines''')
+    machines = c.fetchall()
+    for machine in machines:
+        print(machine)
+    
     conn.commit()
     conn.close()
+
+
+
 
 def login_user(username: str, password: str):
     conn = get_db_connection()
@@ -95,6 +122,7 @@ def fetch_washing_machines(location=None):
             'type': machine['type'],
             'id': machine['id'],
             'state': machine['state'],
+            'run_time': machine['state_time'],
             'state_time': machine['state_time'],
             'location': machine['location']
         })
