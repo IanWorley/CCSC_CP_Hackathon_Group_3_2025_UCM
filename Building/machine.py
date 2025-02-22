@@ -4,17 +4,29 @@ import time
 
 app = Flask(__name__)
 
-# Define constants
+locations = [
+    "Ellis Residence Hall – 312",
+    "Fitz Hall – 527",
+    "Foster Apartments – 684",
+    "Housey Hall – 159",
+    "Houts Hall – 426",
+    "Nickerson Hall – 738",
+    "Panhellenic Hall – 893",
+    "South Todd Hall – 241",
+    "South Yeater Hall – 675",
+    "Crossing South – 508",
+    "Todd Apartments – 369"
+]
+
 IDLE = "idle"
 WASHING = "washing"
 FINISHED = "finished"
 RESERVED = "reserved"
 LOCKED = "locked"
-
 WASHER = "washer"
 DRYER = "dryer"
 
-# Machine class
+
 class Machine:
     def __init__(self, machine_type, machine_id, state, state_time):
         self.type = machine_type
@@ -27,12 +39,12 @@ machines = []
 
 def init_washing_machines():
     random.seed(time.time())  # Seed the random number generator
-    for building in range(10):  # Simulate 10 buildings
-        random_number = random.randint(0, 100)  # Generate a random number for the building
-        for machine in range(10):  # Simulate 10 machines per building
-            machine_id = f"{random_number}0{machine}"  # Combine building and machine number
+    for location in locations:
+        building_name, building_number = location.split(" – ")
+        for machine_num in range(random.randint(1, 10)):  # Random number of machines per location
+            machine_id = f"{building_number}0{machine_num}"  # Combine building number and machine number
             machines.append(Machine(
-                machine_type=WASHER,  # Type of the machine (washer or dryer)
+                machine_type=WASHER,  # Type of the machine (washer)
                 machine_id=machine_id,
                 state=IDLE,  # Initial state is idle
                 state_time=int(time.time())  # Timestamp of state change
