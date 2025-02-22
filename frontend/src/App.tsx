@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-primary w-screen h-screen">
+      <div className="">
         <a href="https://vite.dev" target="_blank">
           <img src={appLogo} className="logo" alt="WashUCMO logo" />
         </a>
