@@ -11,7 +11,7 @@ export default {
       },
       colors: {
         ucm: {
-          "red": "#d21e32"
+          red: "#d21e32",
         },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
