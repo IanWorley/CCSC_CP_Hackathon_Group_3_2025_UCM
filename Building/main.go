@@ -93,3 +93,7 @@ func getWashingMachines(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Write(b)
 }
+
+func lockMachine(mahcineId int, studentId int) {
+
+}
