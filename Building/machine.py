@@ -16,14 +16,20 @@ class MachineType(Enum):
     WASHER = 0
     DRYER = 1
 
+class MachineStyle(Enum):
+    REGULAR = 29
+    DELUXE = 31
+    ULTRA = 39
+
 app = Flask(__name__)
 
 # Machine class
 class Machine:
-    def __init__(self, machine_type, machine_id, state, state_time):
-        self.type = machine_type
-        self.id = machine_id
+    def __init__(self, machine_type, machine_id, state, machine_style, state_time):
+        self.machine_type = machine_type
+        self.machine_id = machine_id
         self.state = state
+        self.machine_style = machine_style
         self.state_time = state_time
 
 # Initialize machines
@@ -36,9 +42,9 @@ def init_washing_machines():
         for machine in range(10):  # Simulate 10 machines per building
             machine_id = f"{random_number}0{machine}"  # Combine building and machine number
             machines.append(Machine(
-                machine_type=WASHER,  # Type of the machine (washer or dryer)
+                machine_type=MachineType.WASHER.value,  # Type of the machine (washer or dryer, 0 or 1 respectively)
                 machine_id=machine_id,
-                state=IDLE,  # Initial state is idle
+                state=MachineStates.IDLE.value,  # Initial state is idle, aka 0
                 state_time=int(time.time())  # Timestamp of state change
             ))
 
