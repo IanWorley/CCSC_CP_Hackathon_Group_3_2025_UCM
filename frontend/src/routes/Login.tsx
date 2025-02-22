@@ -14,10 +14,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 function Login() {
-  /// make a schema
-
   const formSchema = z.object({
-    username: z.string().min(2, {
+    username: z.string().min(3, {
       message: "Username must be at least 2 characters.",
     }),
     password: z.string().min(8, {
@@ -33,8 +31,6 @@ function Login() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
   }
 
