@@ -126,10 +126,17 @@ def get_washing_machines():
 @app.route('/machine/<id>', methods=['GET'])
 def get_washing_machine(id):
     # Search for machine by ID
-    machine = next((machine for machine in machines if machine.id == id), None)
+    machine = next((m for m in machines if m.machine_id == id), None)
     if machine is None:
         abort(404, description="Machine not found")
-    return jsonify(vars(machine))
+    return jsonify({
+        "machine_type": machine.machine_type,
+        "machine_id": machine.machine_id,
+        "state": machine.state,
+        "building_code": machine.building_code,
+        "machine_style": machine.machine_style,
+        "state_time": machine.state_time
+    })
 
 @app.route('/')
 def default_route():
