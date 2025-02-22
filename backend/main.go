@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/washing_machines", getWashingMachines)
+	http.HandleFunc("/ucmo_washing_machine ", getWashingMachines)
 	//hnalde all other requests
 	http.HandleFunc("/", defaultRoute)
 
@@ -24,5 +24,5 @@ func defaultRoute(w http.ResponseWriter, r *http.Request) {
 
 func getWashingMachines(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("/getWashingMachines")
-	w.Write([]byte("Washing Machines"))
+	w.Write([]byte(""))
 }
