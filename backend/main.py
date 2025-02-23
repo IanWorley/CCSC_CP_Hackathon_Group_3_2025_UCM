@@ -37,7 +37,7 @@ def add_user():
         data["password"],
         data["studentId"],
         data["studentEmail"],
-        data["location"],
+        data["buildingId"],
     )
     return jsonify({"status": "success"})
 
@@ -195,12 +195,12 @@ def fetch_washing_machines(location=None):
     return machine_list
 
 
-def add_user_to_db(username: str, password: str, student_id: int, email: str):
+def add_user_to_db(username: str, password: str, student_id: int, email: str, location: str):
     conn = get_db_connection()
     c = conn.cursor()
     c.execute(
-        """INSERT INTO users (username, password, student_id, email) VALUES (?, ?, ?, ?)""",
-        (username, password, student_id, email),
+        """INSERT INTO users (username, password, student_id, email,location) VALUES (?, ?, ?, ?,?)""",
+        (username, password, student_id, email, location),
     )
     conn.commit()
     conn.close()
