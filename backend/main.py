@@ -81,8 +81,14 @@ def seeding():
     c.execute('''INSERT INTO users (username, password, student_id, email) VALUES ('admin', 'admin', 0, 'admin@example.com')''')
 
     # Fetch machines from the external API
-    response = requests.get('http://127.0.0.1:8081/machines')
-    
+
+    try:
+         response = requests.get('http://127.0.0.1:8081/machines')
+    except requests.exceptions.RequestException as e:
+        print("Failed to fetch machines from the API")
+        print("Exception:", e)
+        return
+   
     # Print the API response to inspect its structure
     print("API Response:", response.json())
     
