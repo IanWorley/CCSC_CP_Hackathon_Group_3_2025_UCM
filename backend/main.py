@@ -37,6 +37,7 @@ def add_user():
         data["password"],
         data["studentId"],
         data["studentEmail"],
+        data["location"],
     )
     return jsonify({"status": "success"})
 
@@ -67,6 +68,11 @@ def get_status(id):
     else:
         return jsonify({"error": "Machine not found"}), 404
 
+@app.route("/user", methods=["GET"])
+def user():
+    username = request.args.get("username")
+    return jsonify(get_user_info(username))
+    
 
 @app.route("/users", methods=["GET"])
 def show_users():
@@ -92,7 +98,7 @@ def seeding():
     # Corrected the CREATE TABLE statement for the users table
     c.execute(
         """CREATE TABLE IF NOT EXISTS users 
-                 (username TEXT, password TEXT, student_id INTEGER, email TEXT)"""
+                 (username TEXT, password TEXT, student_id INTEGER, email TEXT , location TEXT)"""
     )
 
     c.execute(
@@ -102,16 +108,13 @@ def seeding():
 
     # Insert a default admin user
     c.execute(
-        """INSERT INTO users (username, password, student_id, email) VALUES ('admin', 'admin', 0, 'admin@example.com')"""
+        """INSERT INTO users (username, password, student_id, email,location) VALUES ('admin', 'admin1234', 0, 'admin@example.com','312')"""
     )
 
     # Fetch machines from the external API
     response = requests.get(
         f"http://127.0.0.1:{os.environ.get('WASHER_PORT', 8081)}/machines"
     )
-
-    # Print the API response to inspect its structure
-    print("API Response:", response.json())
 
     machines = response.json()
 
@@ -145,6 +148,16 @@ def seeding():
     conn.commit()
     conn.close()
 
+def get_user_info (username: str):
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute(
+        """SELECT * FROM users WHERE username = ?""",
+        (username,),
+    )
+    user = c.fetchone()
+    conn.close()
+    return user
 
 def login_user(username: str, password: str):
     conn = get_db_connection()
@@ -166,8 +179,7 @@ def fetch_washing_machines(location=None):
     else:
         c.execute("""SELECT * FROM machines""")
     machines = c.fetchall()
-    print(machines)
-
+    
     # Convert the tuple results into a list of dictionaries
     machine_list = []
     for machine in machines:
