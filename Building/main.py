@@ -191,4 +191,4 @@ def set_machine_state(id, state):
 if __name__ == "__main__":
     print("this runs at the very least")
     init_washing_machines()  # Initialize washing machines
-    app.run(port=os.environ.get("WASHER_PORT", 9999))
+    app.run(port=os.environ.get("WASHER_PORT", 8081 ))

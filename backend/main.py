@@ -30,7 +30,10 @@ def login():
 def add_user():
     data = request.get_json()
     add_user_to_db(
-        data["username"], data["password"], data["student_id"], data["email"]
+        data["username"],
+        data["password"],
+        data["studentId"],
+        data["studentEmail"],
     )
     return jsonify({"status": "success"})
 

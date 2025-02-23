@@ -47,7 +47,7 @@ function Register() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const res = await fetch("/api/adduser", {
+    const res = await fetch("/api/register", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
