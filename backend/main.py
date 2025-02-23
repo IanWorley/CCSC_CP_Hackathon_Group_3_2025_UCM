@@ -99,7 +99,7 @@ def seeding():
 
     # Insert a default admin user
     c.execute(
-        """INSERT INTO users (username, password, student_id, email) VALUES ('admin', 'admin', 0, 'admin@example.com')"""
+        """INSERT INTO users (username, password, student_id, email) VALUES ('admin', 'admin1234', 0, 'admin@example.com')"""
     )
 
     # Fetch machines from the external API
