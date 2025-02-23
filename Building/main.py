@@ -145,4 +145,4 @@ def default_route():
 if __name__ == '__main__':
     print('this runs at the very least')
     init_washing_machines()  # Initialize washing machines
-    app.run(port=8080)
+    app.run(port=8081)

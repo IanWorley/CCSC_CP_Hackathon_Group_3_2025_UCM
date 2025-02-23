@@ -22,7 +22,7 @@ def login():
     login_success = login_user(username, password)
     return jsonify({'login': login_success})
 
-@app.route('/adduser', methods=['POST'])
+@app.route('/register', methods=['POST'])
 def add_user():
     data = request.get_json()
     username = data['username']
@@ -30,16 +30,29 @@ def add_user():
     add_user_to_db(username, password)
     return jsonify({'status': 'success'})
 
-@app.route('/machines', methods=['GET']) # http://127.0.0.1:443//machines?location=312
+@app.route('/machines', methods=['GET']) # http://127.0.0.1:8080//machines?location=312
 def get_machines():
     location = request.args.get('location')
     machines = fetch_washing_machines(location)
     return jsonify(machines)
 
 
+@app.route('/machines/{id}', methods=['GET'])
+def get_status():
+    conn = get_db_connection()
+    c = conn.cursor()
+    runtime= request.args.get('run_time')
+     
+    return jsonify(fetch_washing_machines(runtime))
+
+
+
+
+
 def main():
     seeding()
     app.run(port=8080)
+
 
 def seeding():
     conn = get_db_connection()
@@ -56,7 +69,7 @@ def seeding():
     c.execute('''INSERT INTO users (username, password) VALUES ('admin', 'admin')''')
 
     # Fetch machines from the external API
-    response = requests.get('http://127.0.0.1:8080/machines')
+    response = requests.get('http://127.0.0.1:8081/machines')
     
     # Print the API response to inspect its structure
     print("API Response:", response.json())
@@ -82,9 +95,6 @@ def seeding():
     
     conn.commit()
     conn.close()
-
-
-
 
 def login_user(username: str, password: str):
     conn = get_db_connection()
