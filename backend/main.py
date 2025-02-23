@@ -2,7 +2,7 @@ import os
 import sqlite3
 
 import requests
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 
 app = Flask(__name__)
 
@@ -23,7 +23,10 @@ def login():
     username = data["username"]
     password = data["password"]
     login_success = login_user(username, password)
-    return jsonify({"login": login_success})
+    if login_success:
+        return make_response('', 204)
+    else:
+        return make_response('', 401)
 
 
 @app.route("/register", methods=["POST"])

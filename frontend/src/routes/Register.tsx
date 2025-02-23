@@ -9,13 +9,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem } from "@/components/ui/select";
+import { BuildingDictionary } from "@/model/BuildingList";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { SelectTrigger } from "@radix-ui/react-select";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { z } from "zod";
 
 function Register() {
   const navigate = useNavigate();
+
+  const [backendRegisterStatus, setBackendRegisterStatus] = useState(false);
 
   const formSchema = z.object({
     username: z.string().min(3, {
@@ -34,6 +40,15 @@ function Register() {
     studentId: z.string().regex(/^\d{9}\d?$/, {
       message: "Student ID must be 9 digits",
     }),
+    buildingId: z.enum(
+      Array.from(BuildingDictionary.keys()).map(String) as [
+        string,
+        ...string[],
+      ],
+      {
+        message: "Please select a building",
+      }
+    ),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -43,6 +58,7 @@ function Register() {
       password: "",
       studentEmail: "",
       studentId: "",
+      buildingId: undefined,
     },
   });
 
@@ -59,7 +75,8 @@ function Register() {
     if (res.ok) {
       navigate("/");
     } else {
-      alert("Invalid credentials");
+      setBackendRegisterStatus(true);
+      console.error(res);
     }
   }
 
@@ -77,7 +94,6 @@ function Register() {
                 <FormControl>
                   <Input type="email" placeholder="Student Email" {...field} />
                 </FormControl>
-                <FormDescription>This is your student email.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -99,6 +115,46 @@ function Register() {
 
           <FormField
             control={form.control}
+            name="buildingId"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Building</FormLabel>
+                <Select
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                  }}
+                >
+                  <FormControl>
+                    <SelectTrigger className="w-[180px]">
+                      {BuildingDictionary.get(Number(field.value)) ??
+                        "Select a building"}
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {Array.from(BuildingDictionary.entries()).map(
+                      ([key, value]) => (
+                        <SelectItem
+                          className="h-[25px] md:h-auto"
+                          key={key}
+                          value={key.toString()}
+                          onClick={() => field.onChange(key)}
+                        >
+                          {value}
+                        </SelectItem>
+                      )
+                    )}
+                  </SelectContent>
+                </Select>
+                <FormDescription>
+                  This is the building you live in.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
             name="username"
             render={({ field }) => (
               <FormItem>
@@ -106,9 +162,6 @@ function Register() {
                 <FormControl>
                   <Input placeholder="Username" {...field} />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -128,7 +181,15 @@ function Register() {
             )}
           />
 
-          <Button className="  flex mx-auto w-3/4 mt-5" type="submit">
+          {backendRegisterStatus ? (
+            <p className="text-center text-red-600">Something went wrong.</p>
+          ) : null}
+
+          <Link to="/login" className="text-sm text-blue-500 underline ">
+            <p className="text-center ">Already have an account? Login </p>
+          </Link>
+
+          <Button className=" flex mx-auto w-3/4 mt-5" type="submit">
             Submit
           </Button>
         </form>
