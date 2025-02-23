@@ -59,8 +59,6 @@ def get_status(id):
                 "id": machine["id"],
                 "state": machine["state"],
                 "state_time": machine["state_time"],
-                "run_time": machine["run_time"],
-                "location": machine["location"],
             }
         )
     else:
@@ -94,7 +92,7 @@ def seeding():
 
     c.execute(
         """CREATE TABLE IF NOT EXISTS machines 
-                 (type TEXT, id TEXT, state TEXT, state_time INTEGER, location TEXT, run_time TEXT)"""
+                 (type TEXT, id TEXT, state TEXT, state_time INTEGER, location TEXT)"""
     )
 
     # Insert a default admin user
@@ -103,21 +101,10 @@ def seeding():
     )
 
     # Fetch machines from the external API
-<<<<<<< HEAD
-
-    try:
-         response = requests.get('http://127.0.0.1:8081/machines')
-    except requests.exceptions.RequestException as e:
-        print("Failed to fetch machines from the API")
-        print("Exception:", e)
-        return
-   
-=======
     response = requests.get(
         f"http://127.0.0.1:{os.environ.get('WASHER_PORT', 8081)}/machines"
     )
 
->>>>>>> 12589c4e34874e72227ba9f804ed0025a0377f14
     # Print the API response to inspect its structure
     print("API Response:", response.json())
 
@@ -125,17 +112,18 @@ def seeding():
 
     # Insert fetched machines into the machines table
     for machine in machines:
+        print(machine)
+        print("\n---\n")
         try:
             c.execute(
-                """INSERT INTO machines (type, id, state, state_time, location, run_time) 
-                         VALUES (?, ?, ?, ?, ?, ?)""",
+                """INSERT INTO machines (type, id, state, state_time, location) 
+                         VALUES (?, ?, ?, ?, ?)""",
                 (
                     machine["machine_type"],
                     machine["machine_id"],
                     machine["state"],
                     machine["state_time"],
-                    machine["building_code"],
-                    machine["run_time"],
+                    int(str(machine["machine_id"])[:3]),
                 ),
             )
         except KeyError as e:
@@ -173,6 +161,7 @@ def fetch_washing_machines(location=None):
     else:
         c.execute("""SELECT * FROM machines""")
     machines = c.fetchall()
+    print(machines)
 
     # Convert the tuple results into a list of dictionaries
     machine_list = []
@@ -183,8 +172,6 @@ def fetch_washing_machines(location=None):
                 "id": machine["id"],
                 "state": machine["state"],
                 "state_time": machine["state_time"],
-                "run_time": machine["run_time"],
-                "location": machine["location"],
             }
         )
     conn.close()
