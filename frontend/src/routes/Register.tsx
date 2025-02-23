@@ -13,12 +13,15 @@ import { Select, SelectContent, SelectItem } from "@/components/ui/select";
 import { BuildingDictionary } from "@/model/BuildingList";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SelectTrigger } from "@radix-ui/react-select";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { z } from "zod";
 
 function Register() {
   const navigate = useNavigate();
+
+  const [backendRegisterStatus, setBackendRegisterStatus] = useState(false);
 
   const formSchema = z.object({
     username: z.string().min(3, {
@@ -72,7 +75,8 @@ function Register() {
     if (res.ok) {
       navigate("/");
     } else {
-      alert("Invalid credentials");
+      setBackendRegisterStatus(true);
+      console.error(res);
     }
   }
 
@@ -178,6 +182,10 @@ function Register() {
               </FormItem>
             )}
           />
+
+          {backendRegisterStatus ? (
+            <p className="text-center text-red-600">Something went wrong.</p>
+          ) : null}
 
           <Link to="/login" className="text-sm text-blue-500 underline ">
             <p className="text-center ">Already have an account? Login </p>

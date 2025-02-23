@@ -10,12 +10,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { z } from "zod";
 
 function Login() {
   const navigate = useNavigate();
+
+  const [backendLoginStatus, setBackendLoginStatus] = useState(false);
 
   const formSchema = z.object({
     username: z.string().min(3, {
@@ -30,6 +33,7 @@ function Login() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
+      password: "",
     },
   });
 
@@ -47,7 +51,8 @@ function Login() {
     if (res.ok) {
       navigate("/");
     } else {
-      alert("Invalid username or password");
+      console.error("Error logging in" + res.json());
+      setBackendLoginStatus(true);
     }
   }
 
@@ -88,6 +93,12 @@ function Login() {
               );
             }}
           />
+
+          {backendLoginStatus ? (
+            <p className="text-center text-red-600 my-2">
+              Sorry, we don't recognize the login.
+            </p>
+          ) : null}
 
           <Button className="  flex mx-auto w-3/4 mt-5" type="submit">
             Submit
