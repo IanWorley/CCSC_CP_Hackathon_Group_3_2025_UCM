@@ -37,21 +37,24 @@ def get_machines():
     return jsonify(machines)
 
 
-@app.route('/machines/{id}', methods=['GET'])
+
+@app.route('/machine/{id}', methods=['GET'])
 def get_status():
     conn = get_db_connection()
     c = conn.cursor()
+    c.execute('''SELECT * FROM machines WHERE id = ?''', (id,))
+    machine = c.fetchone()
     runtime= request.args.get('run_time')
      
     return jsonify(fetch_washing_machines(runtime))
 
 
-
-
-
 def main():
     seeding()
     app.run(port=8080)
+    print(ShowUser())
+    print(ShowMachine())
+   
 
 
 def seeding():
@@ -127,11 +130,29 @@ def fetch_washing_machines(location=None):
     conn.close()
     return machine_list
 
-def add_user_to_db(username: str, password: str):
+def add_user_to_db(username: str, password: str, student_id: int, email: str):
     conn = get_db_connection()
     c = conn.cursor()
-    c.execute('''INSERT INTO users (username, password) VALUES (?, ?)''', (username, password))
+    c.execute('''INSERT INTO users (username, password) VALUES (?, ?, ?, ?)''', (username, password, student_id, email))
     conn.commit()
+    conn.close()
+
+@app.route('/show', methods=['GET'])
+def ShowUser ():
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute('''SELECT * FROM users''')
+    users = c.fetchall()
+    for user in users:
+        print(user)
+    conn.close()
+def ShowMachine ():
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute('''SELECT * FROM machines''')
+    machines = c.fetchall()
+    for machine in machines:
+        print(machine)
     conn.close()
 
 if __name__ == '__main__':
