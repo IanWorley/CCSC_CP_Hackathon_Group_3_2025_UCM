@@ -25,37 +25,46 @@ def login():
 @app.route('/register', methods=['POST'])
 def add_user():
     data = request.get_json()
-    username = data['username']
-    password = data['password']
-    add_user_to_db(username, password)
+    add_user_to_db(data['username'], data['password'], data['student_id'], data['email'])
     return jsonify({'status': 'success'})
 
-@app.route('/machines', methods=['GET']) # http://127.0.0.1:8080//machines?location=312
+@app.route('/machines', methods=['GET'])  # http://127.0.0.1:8080/machines?location=312
 def get_machines():
     location = request.args.get('location')
     machines = fetch_washing_machines(location)
     return jsonify(machines)
 
-
-
-@app.route('/machine/{id}', methods=['GET'])
-def get_status():
+@app.route('/machine/<id>', methods=['GET'])
+def get_status(id):
     conn = get_db_connection()
     c = conn.cursor()
     c.execute('''SELECT * FROM machines WHERE id = ?''', (id,))
     machine = c.fetchone()
-    runtime= request.args.get('run_time')
-     
-    return jsonify(fetch_washing_machines(runtime))
+    conn.close()
+    if machine:
+        return jsonify({
+            'type': machine['type'],
+            'id': machine['id'],
+            'state': machine['state'],
+            'state_time': machine['state_time'],
+            'run_time': machine['run_time'],
+            'location': machine['location']
+        })
+    else:
+        return jsonify({'error': 'Machine not found'}), 404
 
+@app.route('/users', methods=['GET'])
+def show_users():
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute('''SELECT * FROM users''')
+    users = c.fetchall()
+    conn.close()
+    return jsonify([dict(user) for user in users])
 
 def main():
     seeding()
     app.run(port=8080)
-    print(ShowUser())
-    print(ShowMachine())
-   
-
 
 def seeding():
     conn = get_db_connection()
@@ -69,7 +78,7 @@ def seeding():
                  (type TEXT, id TEXT, state TEXT, state_time INTEGER, location TEXT, run_time TEXT)''')
     
     # Insert a default admin user
-    c.execute('''INSERT INTO users (username, password) VALUES ('admin', 'admin')''')
+    c.execute('''INSERT INTO users (username, password, student_id, email) VALUES ('admin', 'admin', 0, 'admin@example.com')''')
 
     # Fetch machines from the external API
     response = requests.get('http://127.0.0.1:8081/machines')
@@ -84,7 +93,7 @@ def seeding():
         try:
             c.execute('''INSERT INTO machines (type, id, state, state_time, location, run_time) 
                          VALUES (?, ?, ?, ?, ?, ?)''', 
-                      (machine['type'], machine['id'], machine['state'], machine['state_time'], machine['location'], machine['run_time']))
+                      (machine['machine_type'], machine['machine_id'], machine['state'], machine['state_time'], machine['building_code'], machine['run_time']))
         except KeyError as e:
             print(f"KeyError: Missing key in machine data - {e}")
             print("Problematic machine data:", machine)
@@ -123,8 +132,8 @@ def fetch_washing_machines(location=None):
             'type': machine['type'],
             'id': machine['id'],
             'state': machine['state'],
-            'run_time': machine['state_time'],
             'state_time': machine['state_time'],
+            'run_time': machine['run_time'],
             'location': machine['location']
         })
     conn.close()
@@ -133,26 +142,8 @@ def fetch_washing_machines(location=None):
 def add_user_to_db(username: str, password: str, student_id: int, email: str):
     conn = get_db_connection()
     c = conn.cursor()
-    c.execute('''INSERT INTO users (username, password) VALUES (?, ?, ?, ?)''', (username, password, student_id, email))
+    c.execute('''INSERT INTO users (username, password, student_id, email) VALUES (?, ?, ?, ?)''', (username, password, student_id, email))
     conn.commit()
-    conn.close()
-
-@app.route('/show', methods=['GET'])
-def ShowUser ():
-    conn = get_db_connection()
-    c = conn.cursor()
-    c.execute('''SELECT * FROM users''')
-    users = c.fetchall()
-    for user in users:
-        print(user)
-    conn.close()
-def ShowMachine ():
-    conn = get_db_connection()
-    c = conn.cursor()
-    c.execute('''SELECT * FROM machines''')
-    machines = c.fetchall()
-    for machine in machines:
-        print(machine)
     conn.close()
 
 if __name__ == '__main__':
