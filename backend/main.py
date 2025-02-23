@@ -76,11 +76,13 @@ def show_users():
     conn.close()
     return jsonify([dict(user) for user in users])
 
+@app.route('/reserve/<id>', methods=['GET'])
+def reserve_machine(machine_id):
+    response = requests.get(f'http://127.0.0.1:8081/machine/{machine_id}/reserve')
 
 def main():
     seeding()
     app.run(port=os.environ.get("BACKEND_SERVER_PORT", 8080))
-
 
 def seeding():
     conn = get_db_connection()
@@ -103,7 +105,6 @@ def seeding():
     )
 
     # Fetch machines from the external API
-<<<<<<< HEAD
 
     try:
          response = requests.get('http://127.0.0.1:8081/machines')
@@ -112,12 +113,10 @@ def seeding():
         print("Exception:", e)
         return
    
-=======
     response = requests.get(
         f"http://127.0.0.1:{os.environ.get('WASHER_PORT', 8081)}/machines"
     )
 
->>>>>>> 12589c4e34874e72227ba9f804ed0025a0377f14
     # Print the API response to inspect its structure
     print("API Response:", response.json())
 

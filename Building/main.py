@@ -1,12 +1,9 @@
 from dataclasses import dataclass
-from flask import Flask, jsonify, abort
-from enum import Enum, StrEnum
 import json
 import os
 import random
 import time
 from enum import Enum, StrEnum
-
 from flask import Flask, abort, jsonify
 
 # file for saving machine data
@@ -19,19 +16,16 @@ class MachineState(StrEnum):
     FINISHED = "finished"
     RESERVED = "reserved"
 
-
 # constants for machine type
 class MachineType(StrEnum):
     WASHER = "washer"
     DRYER = "dryer"
-
 
 class MachineStyle(StrEnum):
     REGULAR = "regular"
     DELUXE = "deluxe"
     ULTRA = "ultra"
     DRYER = "dryer"
-
 
 app = Flask(__name__)
 #Machine class
@@ -44,10 +38,8 @@ class Machine:
     machine_style: MachineStyle
     state_time: int
 
-
 def generate_id(building_code):
     return int(f"{building_code}{random.randint(100000000, 999999999)}")
-
 
 def load_building_codes(filename):
     print("loading_building_codes")
@@ -69,9 +61,7 @@ def load_building_codes(filename):
     else:
         print(f"Error {filename} not found!")
 
-
 load_building_codes("codes_for_buildings.txt")
-
 
 def init_washing_machines():
     buildings = load_building_codes("codes_for_buildings.txt")
@@ -96,7 +86,6 @@ def init_washing_machines():
                                     state_time=int(time.time())
                                     ))
     return machines
-
 
 def save_machines(machines):
     with open(MACHINE_FILE, "w") as f:
@@ -141,7 +130,6 @@ def checkMachine(m: Machine):
     elif m.state == MachineState.RESERVED:
         if int(time.time()) - m.state_time > (10 * 60):
             m.state = MachineState.IDLE
-    
 
 #load machines at startup
 machines = init_washing_machines()
@@ -150,11 +138,9 @@ reserved_machines = set() #list of machines that will be reserved after washing
 if not os.path.exists(MACHINE_FILE):
     save_machines(machines)
 
-
 @app.route("/machines", methods=["GET"])
 def get_washing_machines():
     return jsonify([vars(machine) for machine in machines])
-
 
 @app.route("/machine/<id>", methods=["GET"])
 def get_washing_machine(id):
