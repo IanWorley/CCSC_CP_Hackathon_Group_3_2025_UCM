@@ -36,6 +36,10 @@ def get_machines():
     machines = fetch_washing_machines(location)
     return jsonify(machines)
 
+@app.route('/reserve/<id>', methods=['POST'])
+def reserve(id):
+    pass
+
 
 def main():
     seeding()
@@ -82,8 +86,6 @@ def seeding():
     
     conn.commit()
     conn.close()
-
-
 
 
 def login_user(username: str, password: str):

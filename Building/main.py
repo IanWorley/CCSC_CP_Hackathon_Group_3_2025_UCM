@@ -14,7 +14,6 @@ class MachineStates(Enum):
     WASHING = 1
     FINISHED = 2
     RESERVED = 3
-    LOCKED = 4
 
 #constants for machine type
 class MachineType(Enum):
