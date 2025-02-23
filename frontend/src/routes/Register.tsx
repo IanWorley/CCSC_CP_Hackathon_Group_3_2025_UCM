@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { z } from "zod";
 
-function Login() {
+function Register() {
   const navigate = useNavigate();
 
   const formSchema = z.object({
@@ -24,38 +24,79 @@ function Login() {
     password: z.string().min(8, {
       message: "Password must be at least 8 characters.",
     }),
+    studentEmail: z
+      .string()
+      .email({
+        message: "Invalid email address",
+      })
+      .regex(/@ucmo\.edu$/),
+
+    studentId: z.string().regex(/^\d{9}\d?$/, {
+      message: "Student ID must be 9 digits",
+    }),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
+      password: "",
+      studentEmail: "",
+      studentId: "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const res = await fetch("/api/login", {
+    const res = await fetch("/api/register", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
         "Content-Type": "application/json",
       },
     });
-
     form.reset();
 
     if (res.ok) {
       navigate("/");
     } else {
-      alert("Invalid username or password");
+      alert("Invalid credentials");
     }
   }
 
   return (
     <div className="mx-auto p-2 ">
-      <h1 className="text-lg text-center font-bold">Login</h1>
+      <h1 className="text-lg text-center font-bold">Register</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className=" p-4 ">
+          <FormField
+            control={form.control}
+            name="studentEmail"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Student Email</FormLabel>
+                <FormControl>
+                  <Input type="email" placeholder="Student Email" {...field} />
+                </FormControl>
+                <FormDescription>This is your student email.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="studentId"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Student ID</FormLabel>
+                <FormControl>
+                  <Input placeholder="Student ID" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <FormField
             control={form.control}
             name="username"
@@ -76,17 +117,15 @@ function Login() {
           <FormField
             control={form.control}
             name="password"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input type="password" placeholder="Password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input type="password" placeholder="Password" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
 
           <Button className="  flex mx-auto w-3/4 mt-5" type="submit">
@@ -98,4 +137,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
