@@ -11,9 +11,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import { z } from "zod";
 
 function Register() {
+  const navigate = useNavigate();
+
   const formSchema = z.object({
     username: z.string().min(3, {
       message: "Username must be at least 2 characters.",
@@ -21,11 +24,15 @@ function Register() {
     password: z.string().min(8, {
       message: "Password must be at least 8 characters.",
     }),
-    studentEmail: z.string().email({
-      message: "Invalid email address",
-    }),
-    studentId: z.string().regex(/^\d{8}\d?$/, {
-      message: "Student ID must be 8 digits",
+    studentEmail: z
+      .string()
+      .email({
+        message: "Invalid email address",
+      })
+      .regex(/@ucmo\.edu$/),
+
+    studentId: z.string().regex(/^\d{9}\d?$/, {
+      message: "Student ID must be 9 digits",
     }),
   });
 
@@ -39,24 +46,21 @@ function Register() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const registerFn = async () => {
-      const res = await fetch("/adduser", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (res.ok) {
-        console.log("Registration successful");
-      } else {
-        alert("Invalid credentials");
-      }
-    };
-    registerFn();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const res = await fetch("/api/adduser", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     form.reset();
+
+    if (res.ok) {
+      navigate("/");
+    } else {
+      alert("Invalid credentials");
+    }
   }
 
   return (
@@ -71,7 +75,7 @@ function Register() {
               <FormItem>
                 <FormLabel>Student Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Student Email" {...field} />
+                  <Input type="email" placeholder="Student Email" {...field} />
                 </FormControl>
                 <FormDescription>This is your student email.</FormDescription>
                 <FormMessage />
@@ -117,7 +121,7 @@ function Register() {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="Password" {...field} />
+                  <Input type="password" placeholder="Password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

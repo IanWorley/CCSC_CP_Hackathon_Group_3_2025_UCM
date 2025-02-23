@@ -11,9 +11,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import { z } from "zod";
 
 function Login() {
+  const navigate = useNavigate();
+
   const formSchema = z.object({
     username: z.string().min(3, {
       message: "Username must be at least 2 characters.",
@@ -30,24 +33,22 @@ function Login() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const loginFn = async () => {
-      const res = await fetch("/login", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const res = await fetch("/api/login", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-      if (res.ok) {
-        console.log("Login successful");
-      } else {
-        alert("Invalid credentials");
-      }
-    };
-    loginFn();
     form.reset();
+
+    if (res.ok) {
+      navigate("/");
+    } else {
+      alert("Invalid username or password");
+    }
   }
 
   return (
@@ -80,7 +81,7 @@ function Login() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="Password" {...field} />
+                    <Input type="password" placeholder="Password" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
