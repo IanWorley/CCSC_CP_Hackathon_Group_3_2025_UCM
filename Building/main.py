@@ -37,10 +37,10 @@ class Machine:
     state: MachineState
     machine_style: MachineStyle
     state_time: int
-    #reserved_for: int = 0 #0 is the default state as it should only actually equal something if a student has reserved the machine
+    reserved_for: int = 0 #0 is the default state as it should only actually equal something if a student has reserved the machine
 
 def generate_id(building_code):
-    return int(f"{building_code}{random.randint(100000000, 999999999)}")
+    return int(f"{building_code}{random.randint(100, 999)}")
 
 def load_building_codes(filename):
     print("loading_building_codes")
@@ -124,6 +124,7 @@ def checkMachine(m: Machine):
         if int(time.time()) - m.state_time > (5 * 60) and random.randint(0, 1) == 1: 
             if m in reserved_machines:
                 m.state = MachineState.RESERVED
+                m.reserved_for = 0
                 reserved_machines.remove(m)
             else:
                 m.state = MachineState.IDLE
@@ -170,6 +171,8 @@ def reserve_washing_machine(id):
         abort(404, description="Machine not found")
     if machine.state == MachineState.IDLE:
         machine.state = MachineState.RESERVED
+        #this line is just junk code, will try to edit once front end is finished and i can actually do something with it
+        machine.reserved_for += 1
         machine.state_time = int(time.time())
     elif machine.state == MachineState.WASHING:
         reserved_machines.add(machine)
