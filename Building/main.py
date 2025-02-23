@@ -37,6 +37,7 @@ class Machine:
     state: MachineState
     machine_style: MachineStyle
     state_time: int
+    #reserved_for: int = 0 #0 is the default state as it should only actually equal something if a student has reserved the machine
 
 def generate_id(building_code):
     return int(f"{building_code}{random.randint(100000000, 999999999)}")
@@ -182,6 +183,10 @@ def get_washing_machine_state(id):
     if machine is None:
         abort(404, description="Machine not found")
     return jsonify({"state": machine.state})
+
+@app.route('/machine/<id>/unlock', methods=['POST'])
+def unlock_washing_machine(id):
+    pass
 
 @app.route('/')
 def default_route():
