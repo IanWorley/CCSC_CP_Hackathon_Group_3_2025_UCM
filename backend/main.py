@@ -70,8 +70,19 @@ def get_status(id):
 
 @app.route("/user", methods=["GET"])
 def user():
-    username = request.args.get("username")
-    return jsonify(get_user_info(username))
+    try:
+        username = request.args.get("username")
+        if not username:
+            return jsonify({"error": "Username is required"}), 400
+        
+        user_info = get_user_info(username)
+        if user_info:
+            return jsonify(user_info)
+        else:
+            return jsonify({"error": "User not found"}), 404
+    except Exception as e:
+        print(f"Error fetching user info: {e}")
+        return jsonify({"error": "Internal Server Error"}), 500
     
 
 @app.route("/users", methods=["GET"])
@@ -148,7 +159,7 @@ def seeding():
     conn.commit()
     conn.close()
 
-def get_user_info (username: str):
+def get_user_info(username: str):
     conn = get_db_connection()
     c = conn.cursor()
     c.execute(
@@ -157,7 +168,15 @@ def get_user_info (username: str):
     )
     user = c.fetchone()
     conn.close()
-    return user
+    if user:
+        return {
+            "username": user["username"],
+            "student_id": user["student_id"],
+            "email": user["email"],
+            "location": user["location"]
+        }
+    else:
+        return None
 
 def login_user(username: str, password: str):
     conn = get_db_connection()

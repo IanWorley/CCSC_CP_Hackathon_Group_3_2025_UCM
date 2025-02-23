@@ -48,7 +48,16 @@ function Login() {
     form.reset();
 
     if (res.ok) {
+      
+      const userRes = await fetch(`/api/user?username=${values.username}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      localStorage.setItem("buildingId", JSON.stringify(await userRes.json()));
       navigate("/");
+      
     } else {
       console.error("Error logging in" + res.json());
       setBackendLoginStatus(true);
