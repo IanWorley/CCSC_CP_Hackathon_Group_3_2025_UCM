@@ -125,9 +125,27 @@ def load_machines():
     save_machines(machines)
     return machines
 
+def checkMachine(m: Machine):
+    if m.state == MachineState.WASHING:
+        if int(time.time()) - m.state_time > (30 * 60): #30 minutes in seconds
+            m.state = MachineState.FINISHED
+            m.state_time = int(time.time())
+    elif m.state == MachineState.FINISHED:
+        if int(time.time()) - m.state_time > (5 * 60) and random.randint(0, 1) == 1: 
+            if m in reserved_machines:
+                m.state = MachineState.RESERVED
+                reserved_machines.remove(m)
+            else:
+                m.state = MachineState.IDLE
+            m.state_time = int(time.time())
+    elif m.state == MachineState.RESERVED:
+        if int(time.time()) - m.state_time > (10 * 60):
+            m.state = MachineState.IDLE
+    
 
-# load machines at startup
+#load machines at startup
 machines = init_washing_machines()
+reserved_machines = set() #list of machines that will be reserved after washing
 
 if not os.path.exists(MACHINE_FILE):
     save_machines(machines)
@@ -142,9 +160,13 @@ def get_washing_machines():
 def get_washing_machine(id):
 
     # Search for machine by ID
-    machine = next((m for m in machines if m.machine_id == id), None)
-    if machine is None:
-        abort(404, description="Machine not found")
+    machine = next((m for m in machines if m.machine_id == int(id)), None)
+
+    if machine is not None:
+        checkMachine(machine)
+    else:
+        abort(404, description=f"Machine not found")
+
     return jsonify({
         "machine_type": machine.machine_type,
         "machine_id": machine.machine_id,
@@ -156,14 +178,15 @@ def get_washing_machine(id):
 @app.route('/machine/<id>/reserve', methods=['POST'])
 def reserve_washing_machine(id):
     # Search for machine by ID
-    machine = next((m for m in machines if m.machine_id == id), None)
+    machine = next((m for m in machines if m.machine_id == int(id)), None)
     if machine is None:
         abort(404, description="Machine not found")
-
-    # Update machine state
-    machine.state = MachineState.RESERVED
-    machine.state_time = int(time.time())
-    save_machines(machines)
+    if machine.state == MachineState.IDLE:
+        machine.state = MachineState.RESERVED
+        machine.state_time = int(time.time())
+    elif machine.state == MachineState.WASHING:
+        reserved_machines.add(machine)
+    
     return jsonify({"status": "success"})
 
 @app.route('/machine/<id>/state', methods=['GET'])

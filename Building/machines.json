@@ -1,706 +1,618 @@
 [
     {
         "machine_type": "washer",
-        "machine_id": 312466125434,
+        "machine_id": 312186773440,
         "state": "idle",
-        "building_code": 312,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 312647343819,
+        "machine_id": 312168346861,
         "state": "idle",
-        "building_code": 312,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 312231839448,
+        "machine_id": 312284946221,
         "state": "idle",
-        "building_code": 312,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 312810964840,
+        "machine_id": 312335939362,
         "state": "idle",
-        "building_code": 312,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 312228973323,
+        "machine_id": 312393154342,
         "state": "idle",
-        "building_code": 312,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 312444937983,
+        "machine_id": 312848500576,
         "state": "idle",
-        "building_code": 312,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 312306963648,
+        "machine_id": 312755741330,
         "state": "idle",
-        "building_code": 312,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 312773044799,
+        "machine_id": 312970836208,
         "state": "idle",
-        "building_code": 312,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 527367568982,
+        "machine_id": 527456185375,
         "state": "idle",
-        "building_code": 527,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 527831294857,
+        "machine_id": 527354015540,
         "state": "idle",
-        "building_code": 527,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 527469675665,
+        "machine_id": 527246769984,
         "state": "idle",
-        "building_code": 527,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 527417249974,
+        "machine_id": 527998834674,
         "state": "idle",
-        "building_code": 527,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 527498597154,
+        "machine_id": 527640194169,
         "state": "idle",
-        "building_code": 527,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 527648648898,
+        "machine_id": 527888919549,
         "state": "idle",
-        "building_code": 527,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 527794723148,
+        "machine_id": 527631433537,
         "state": "idle",
-        "building_code": 527,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 527644668815,
+        "machine_id": 527163595218,
         "state": "idle",
-        "building_code": 527,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 684823125785,
+        "machine_id": 684387043369,
         "state": "idle",
-        "building_code": 684,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 684323401701,
+        "machine_id": 684864091807,
         "state": "idle",
-        "building_code": 684,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 684874828179,
+        "machine_id": 684792627983,
         "state": "idle",
-        "building_code": 684,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 684126097812,
+        "machine_id": 684779320141,
         "state": "idle",
-        "building_code": 684,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 684755270121,
+        "machine_id": 684836058578,
         "state": "idle",
-        "building_code": 684,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 684934335279,
+        "machine_id": 684255569276,
         "state": "idle",
-        "building_code": 684,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 684779171866,
+        "machine_id": 684145209746,
         "state": "idle",
-        "building_code": 684,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 684787242577,
+        "machine_id": 684694725406,
         "state": "idle",
-        "building_code": 684,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 159987047578,
+        "machine_id": 159244251688,
         "state": "idle",
-        "building_code": 159,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 159262685244,
+        "machine_id": 159849015719,
         "state": "idle",
-        "building_code": 159,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 159820057018,
+        "machine_id": 159540008869,
         "state": "idle",
-        "building_code": 159,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 159836943103,
+        "machine_id": 159457813999,
         "state": "idle",
-        "building_code": 159,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 159264830600,
+        "machine_id": 159972221706,
         "state": "idle",
-        "building_code": 159,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 159366074238,
+        "machine_id": 159346168570,
         "state": "idle",
-        "building_code": 159,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 159766006593,
+        "machine_id": 159575895652,
         "state": "idle",
-        "building_code": 159,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 159728449691,
+        "machine_id": 159551325118,
         "state": "idle",
-        "building_code": 159,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 426513684910,
+        "machine_id": 426763966126,
         "state": "idle",
-        "building_code": 426,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 426589882012,
+        "machine_id": 426794165432,
         "state": "idle",
-        "building_code": 426,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 426261007653,
+        "machine_id": 426978891529,
         "state": "idle",
-        "building_code": 426,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 426450542005,
+        "machine_id": 426392561961,
         "state": "idle",
-        "building_code": 426,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 426865232634,
+        "machine_id": 426447612028,
         "state": "idle",
-        "building_code": 426,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 426298688214,
+        "machine_id": 426680033973,
         "state": "idle",
-        "building_code": 426,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 426117226721,
+        "machine_id": 426620533409,
         "state": "idle",
-        "building_code": 426,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 426818437372,
+        "machine_id": 426911600230,
         "state": "idle",
-        "building_code": 426,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 738585305045,
+        "machine_id": 738735640326,
         "state": "idle",
-        "building_code": 738,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 738295836674,
+        "machine_id": 738237197196,
         "state": "idle",
-        "building_code": 738,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 738669661250,
+        "machine_id": 738721708916,
         "state": "idle",
-        "building_code": 738,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 738548349740,
+        "machine_id": 738830520143,
         "state": "idle",
-        "building_code": 738,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 738688697709,
+        "machine_id": 738329719506,
         "state": "idle",
-        "building_code": 738,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 738342259063,
+        "machine_id": 738611948202,
         "state": "idle",
-        "building_code": 738,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 738919707825,
+        "machine_id": 738386794024,
         "state": "idle",
-        "building_code": 738,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 738271978084,
+        "machine_id": 738457496140,
         "state": "idle",
-        "building_code": 738,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 893565902398,
+        "machine_id": 893268127331,
         "state": "idle",
-        "building_code": 893,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 893904070605,
+        "machine_id": 893122267622,
         "state": "idle",
-        "building_code": 893,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 893237189302,
+        "machine_id": 893417941784,
         "state": "idle",
-        "building_code": 893,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 893279278176,
+        "machine_id": 893192863776,
         "state": "idle",
-        "building_code": 893,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 893105249264,
+        "machine_id": 893181767946,
         "state": "idle",
-        "building_code": 893,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 893952188130,
+        "machine_id": 893497759633,
         "state": "idle",
-        "building_code": 893,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 893881073074,
+        "machine_id": 893889709703,
         "state": "idle",
-        "building_code": 893,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 893239324727,
+        "machine_id": 893294734049,
         "state": "idle",
-        "building_code": 893,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 241575239557,
+        "machine_id": 241891205647,
         "state": "idle",
-        "building_code": 241,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 241221949521,
+        "machine_id": 241388876048,
         "state": "idle",
-        "building_code": 241,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 241144061512,
+        "machine_id": 241287641157,
         "state": "idle",
-        "building_code": 241,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 241421363900,
+        "machine_id": 241870116737,
         "state": "idle",
-        "building_code": 241,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 241909608530,
+        "machine_id": 241626762167,
         "state": "idle",
-        "building_code": 241,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 241567169802,
+        "machine_id": 241196700960,
         "state": "idle",
-        "building_code": 241,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 241760065027,
+        "machine_id": 241998312760,
         "state": "idle",
-        "building_code": 241,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 241212381127,
+        "machine_id": 241333234872,
         "state": "idle",
-        "building_code": 241,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 675176393031,
+        "machine_id": 675204221786,
         "state": "idle",
-        "building_code": 675,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 675347036867,
+        "machine_id": 675875884354,
         "state": "idle",
-        "building_code": 675,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 675483593805,
+        "machine_id": 675941746070,
         "state": "idle",
-        "building_code": 675,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 675337266364,
+        "machine_id": 675781918800,
         "state": "idle",
-        "building_code": 675,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 675184695271,
+        "machine_id": 675284487570,
         "state": "idle",
-        "building_code": 675,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 675520819042,
+        "machine_id": 675747830952,
         "state": "idle",
-        "building_code": 675,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 675473240184,
+        "machine_id": 675193112018,
         "state": "idle",
-        "building_code": 675,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 675451116504,
+        "machine_id": 675957038865,
         "state": "idle",
-        "building_code": 675,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 508968194679,
+        "machine_id": 508541676888,
         "state": "idle",
-        "building_code": 508,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 508511136039,
+        "machine_id": 508876898311,
         "state": "idle",
-        "building_code": 508,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 508349059835,
+        "machine_id": 508546427301,
         "state": "idle",
-        "building_code": 508,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 508135080704,
+        "machine_id": 508550361808,
         "state": "idle",
-        "building_code": 508,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 508969145460,
+        "machine_id": 508895193469,
         "state": "idle",
-        "building_code": 508,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 508354277710,
+        "machine_id": 508434743660,
         "state": "idle",
-        "building_code": 508,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 508209393004,
+        "machine_id": 508261781599,
         "state": "idle",
-        "building_code": 508,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 508341002885,
+        "machine_id": 508143734047,
         "state": "idle",
-        "building_code": 508,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 369664939512,
+        "machine_id": 369230226474,
         "state": "idle",
-        "building_code": 369,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 369711495675,
+        "machine_id": 369612804997,
         "state": "idle",
-        "building_code": 369,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 369513135344,
+        "machine_id": 369716227030,
         "state": "idle",
-        "building_code": 369,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "washer",
-        "machine_id": 369900212252,
+        "machine_id": 369280442020,
         "state": "idle",
-        "building_code": 369,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 369510552528,
+        "machine_id": 369640651095,
         "state": "idle",
-        "building_code": 369,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 369464741406,
+        "machine_id": 369189696881,
         "state": "idle",
-        "building_code": 369,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 369900039126,
+        "machine_id": 369844919827,
         "state": "idle",
-        "building_code": 369,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     },
     {
         "machine_type": "dryer",
-        "machine_id": 369863435202,
+        "machine_id": 369326229421,
         "state": "idle",
-        "building_code": 369,
         "machine_style": null,
-        "state_time": 1740270688
+        "state_time": 1740274278
     }
 ]
