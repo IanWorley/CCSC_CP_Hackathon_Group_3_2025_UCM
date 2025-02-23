@@ -14,7 +14,7 @@ import { BuildingDictionary } from "@/model/BuildingList";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SelectTrigger } from "@radix-ui/react-select";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { z } from "zod";
 
 function Register() {
@@ -178,6 +178,10 @@ function Register() {
               </FormItem>
             )}
           />
+
+          <Link to="/login" className="text-sm text-blue-500 underline ">
+            <p className="text-center ">Already have an account? Login </p>
+          </Link>
 
           <Button className=" flex mx-auto w-3/4 mt-5" type="submit">
             Submit
