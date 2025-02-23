@@ -1,3 +1,6 @@
+from dataclasses import dataclass
+from flask import Flask, jsonify, abort
+from enum import Enum, StrEnum
 import json
 import os
 import random
@@ -9,9 +12,8 @@ from flask import Flask, abort, jsonify
 # file for saving machine data
 MACHINE_FILE = "machines.json"
 
-
-# constants for the machine states
-class MachineStates(StrEnum):
+#constants for the machine states
+class MachineState(StrEnum):
     IDLE = "idle"
     WASHING = "washing"
     FINISHED = "finished"
@@ -32,21 +34,15 @@ class MachineStyle(StrEnum):
 
 
 app = Flask(__name__)
+#Machine class
 
-
-# Machine class
+@dataclass
 class Machine:
-    def __init__(
-        self, machine_type, machine_id, building_code, state, machine_style, state_time
-    ):
-        self.machine_type = machine_type
-        self.machine_id = machine_id
-        self.state = state
-        self.building_code = building_code
-        self.machine_style = (
-            machine_style if state == MachineStates.WASHING else None
-        )  # only set the machine style if the machine is actually currently washing something
-        self.state_time = state_time
+    machine_type: MachineType
+    machine_id: int
+    state: MachineState
+    machine_style: MachineStyle
+    state_time: int
 
 
 def generate_id(building_code):
@@ -83,28 +79,22 @@ def init_washing_machines():
 
     for building, code in buildings.items():
         code = int(code)
-        for i in range(4):  # 4 washers
-            machines.append(
-                Machine(
-                    machine_type=MachineType.WASHER,
-                    machine_id=generate_id(code),
-                    building_code=code,
-                    state=MachineStates.IDLE,
-                    machine_style=None,  # set to none since its just initialized
-                    state_time=int(time.time()),
-                )
-            )
-        for i in range(4):  # 4 dryers
-            machines.append(
-                Machine(
-                    machine_type=MachineType.DRYER,
-                    machine_id=generate_id(code),
-                    building_code=code,
-                    state=MachineStates.IDLE,
-                    machine_style=None,  # set to none since its just initialized
-                    state_time=int(time.time()),
-                )
-            )
+        for i in range(4): #4 washers
+            machines.append(Machine(
+                                    machine_type=MachineType.WASHER,
+                                    machine_id=generate_id(code),
+                                    state = MachineState.IDLE,
+                                    machine_style=None,#set to none since its just initialized
+                                    state_time=int(time.time())
+                                    ))
+        for i in range(4): #4 dryers
+            machines.append(Machine(
+                                    machine_type=MachineType.DRYER,
+                                    machine_id=generate_id(code),
+                                    state=MachineState.IDLE,
+                                    machine_style=None,  #set to none since its just initialized
+                                    state_time=int(time.time())
+                                    ))
     return machines
 
 
@@ -120,16 +110,13 @@ def load_machines():
                 machine_data = json.load(f)
                 machines = []
                 for data in machine_data:
-                    machines.append(
-                        Machine(
-                            machine_type=data["machine_type"],
-                            machine_id=data["machine_id"],
-                            building_code=data["building_code"],
-                            state=data["state"],
-                            state_time=data["state_time"],
-                            machine_style=data["machine_style"],
-                        )
-                    )
+                    machines.append(Machine(
+                        machine_type=data["machine_type"],
+                        machine_id=data["machine_id"],
+                        state=data["state"],
+                        state_time=data["state_time"],
+                        machine_style=data["machine_style"],
+                    ))
                 return machines
             except json.JSONDecodeError:
                 print("Error reading machines.json, Reinitalizing machines")
@@ -153,23 +140,41 @@ def get_washing_machines():
 
 @app.route("/machine/<id>", methods=["GET"])
 def get_washing_machine(id):
+
     # Search for machine by ID
     machine = next((m for m in machines if m.machine_id == id), None)
     if machine is None:
         abort(404, description="Machine not found")
-    return jsonify(
-        {
-            "machine_type": machine.machine_type,
-            "machine_id": machine.machine_id,
-            "state": machine.state,
-            "building_code": machine.building_code,
-            "machine_style": machine.machine_style,
-            "state_time": machine.state_time,
-        }
-    )
+    return jsonify({
+        "machine_type": machine.machine_type,
+        "machine_id": machine.machine_id,
+        "state": machine.state,
+        "machine_style": machine.machine_style,
+        "state_time": machine.state_time
+    })
 
+@app.route('/machine/<id>/reserve', methods=['POST'])
+def reserve_washing_machine(id):
+    # Search for machine by ID
+    machine = next((m for m in machines if m.machine_id == id), None)
+    if machine is None:
+        abort(404, description="Machine not found")
 
-@app.route("/")
+    # Update machine state
+    machine.state = MachineState.RESERVED
+    machine.state_time = int(time.time())
+    save_machines(machines)
+    return jsonify({"status": "success"})
+
+@app.route('/machine/<id>/state', methods=['GET'])
+def get_washing_machine_state(id):
+    # Search for machine by ID
+    machine = next((m for m in machines if m.machine_id == id), None)
+    if machine is None:
+        abort(404, description="Machine not found")
+    return jsonify({"state": machine.state})
+
+@app.route('/')
 def default_route():
     abort(404, description="Page not found")
 
