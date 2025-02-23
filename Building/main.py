@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, abort
-from enum import Enum
+from enum import Enum, StrEnum
 import json
 import os
 import time
@@ -9,22 +9,23 @@ import random
 MACHINE_FILE = "machines.json"
 
 #constants for the machine states
-class MachineStates(Enum):
-    IDLE = 0
-    WASHING = 1
-    FINISHED = 2
-    RESERVED = 3
+class MachineStates(StrEnum):
+    IDLE = "idle"
+    WASHING = "washing"
+    FINISHED = "finished"
+    RESERVED = "reserved"
 
 #constants for machine type
-class MachineType(Enum):
-    WASHER = 0
-    DRYER = 1
+class MachineType(StrEnum):
+    WASHER = "washer"
+    DRYER = "dryer"
 
-class MachineStyle(Enum):
-    REGULAR = 29
-    DELUXE = 31
-    ULTRA = 39
-    DRYER = 60
+class MachineStyle(StrEnum):
+    REGULAR = "regular"
+    DELUXE = "deluxe"
+    ULTRA = "ultra"
+    DRYER = "dryer"
+
 app = Flask(__name__)
 #Machine class
 class Machine:
@@ -33,11 +34,11 @@ class Machine:
         self.machine_id = machine_id
         self.state = state
         self.building_code = building_code
-        self.machine_style = machine_style if state == MachineStates.WASHING.value else None #only set the machine style if the machine is actually currently washing something
+        self.machine_style = machine_style if state == MachineStates.WASHING else None #only set the machine style if the machine is actually currently washing something
         self.state_time = state_time
 
 def generate_id(building_code):
-    return f"{building_code}{random.randint(100000000, 999999999)}"
+    return int(f"{building_code}{random.randint(100000000, 999999999)}")
 
 def load_building_codes(filename):
     print('loading_building_codes')
@@ -65,21 +66,22 @@ def init_washing_machines():
     machines = []
 
     for building, code in buildings.items():
+        code = int(code)
         for i in range(4): #4 washers
             machines.append(Machine(
-                                    machine_type=MachineType.WASHER.value,
+                                    machine_type=MachineType.WASHER,
                                     machine_id=generate_id(code),
                                     building_code=code,
-                                    state = MachineStates.IDLE.value,
+                                    state = MachineStates.IDLE,
                                     machine_style=None,#set to none since its just initialized
                                     state_time=int(time.time())
                                     ))
         for i in range(4): #4 dryers
             machines.append(Machine(
-                                    machine_type=MachineType.DRYER.value,
+                                    machine_type=MachineType.DRYER,
                                     machine_id=generate_id(code),
                                     building_code=code,
-                                    state=MachineStates.IDLE.value,
+                                    state=MachineStates.IDLE,
                                     machine_style=None,  #set to none since its just initialized
                                     state_time=int(time.time())
                                     ))
@@ -113,7 +115,7 @@ def load_machines():
     return machines
 
 #load machines at startup
-machines = load_machines()
+machines = init_washing_machines()
 
 if not os.path.exists(MACHINE_FILE):
     save_machines(machines)
@@ -141,7 +143,18 @@ def get_washing_machine(id):
 def default_route():
     abort(404, description="Page not found")
 
+@app.route('/machine/<id>/set_state/<state>', methods=['POST'])
+def set_machine_state(id, state):
+    # Search for machine by ID
+    machine = next((m for m in machines if m.machine_id == id), None)
+    if machine is None:
+        abort(404, description="Machine not found")
+
+    # Update machine state
+    machine.state = state
+    machine.state_time = int(time.time())
+    save_machines(machines)
+    return jsonify({"status": "success"})
+
 if __name__ == '__main__':
-    print('this runs at the very least')
-    init_washing_machines()  # Initialize washing machines
     app.run(port=8081)
