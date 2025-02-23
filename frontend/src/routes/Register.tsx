@@ -94,7 +94,6 @@ function Register() {
                 <FormControl>
                   <Input type="email" placeholder="Student Email" {...field} />
                 </FormControl>
-                <FormDescription>This is your student email.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -146,7 +145,9 @@ function Register() {
                     )}
                   </SelectContent>
                 </Select>
-
+                <FormDescription>
+                  This is the building you live in.
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -161,9 +162,6 @@ function Register() {
                 <FormControl>
                   <Input placeholder="Username" {...field} />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
