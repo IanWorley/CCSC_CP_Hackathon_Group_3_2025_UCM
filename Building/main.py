@@ -161,7 +161,7 @@ def get_washing_machine(id):
         "state_time": machine.state_time
     })
 
-@app.route('/machine/<id>/reserve', methods=['POST'])
+@app.route('/machine/<id>/reserve', methods=['GET'])
 def reserve_washing_machine(id):
     # Search for machine by ID
     machine = next((m for m in machines if m.machine_id == int(id)), None)
