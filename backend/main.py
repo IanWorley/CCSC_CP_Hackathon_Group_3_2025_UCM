@@ -74,11 +74,13 @@ def show_users():
     conn.close()
     return jsonify([dict(user) for user in users])
 
+@app.route('/reserve/<id>', methods=['GET'])
+def reserve_machine(machine_id):
+    response = requests.get(f'http://127.0.0.1:8081/machine/{machine_id}/reserve')
 
 def main():
     seeding()
     app.run(port=os.environ.get("BACKEND_SERVER_PORT", 8080))
-
 
 def seeding():
     conn = get_db_connection()
