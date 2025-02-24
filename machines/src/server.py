@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, jsonify, request, abort
 import machine
 
@@ -84,4 +86,4 @@ def reserve_machine(id):
 
 if __name__ == '__main__':
     all_machines = generate_machines(2, 2)
-    app.run(port=8081)
+    app.run(port=os.environ.get("MACHINE_PORT", 5000), host=os.environ.get("MACHINE_HOST", "0.0.0.0"), debug=os.environ.get("DEBUG", False))
