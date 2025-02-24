@@ -6,9 +6,10 @@ export default {
       colors: {
         ucm: {
           red: "#d21e32",
-        },
+        }
       },
     },
   },
   plugins: [],
-};
+}
+
