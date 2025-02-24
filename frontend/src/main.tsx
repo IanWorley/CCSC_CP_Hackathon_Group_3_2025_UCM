@@ -1,24 +1,23 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router";
-import "./index.css";
-import Index from "./routes/Index.tsx";
-import Layout from "./routes/Layout.tsx";
-import Login from "./routes/Login.tsx";
-import MachinePage from "./routes/MachinePage.tsx";
-import Register from "./routes/Register.tsx";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+import Layout from './components/Layout.tsx';
+import Login from './components/Login.tsx';
+import Machines from './components/Machines.tsx';
+import MachinePage from './components/MachinePage.tsx';
 
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Index />} />
-          <Route path="/machine/:id" element={<MachinePage />} />
+          <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path='/machines' element={<Machines />} />
+          <Route path="/machine/:id" element={<MachinePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
-  </StrictMode>
-);
+  </StrictMode>,
+)
