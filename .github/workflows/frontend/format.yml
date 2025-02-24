@@ -1,0 +1,25 @@
+name: Format Check
+
+on: [push, pull_request]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: "latest"
+
+      - name: Move to frontend directory
+        run: cd frontend
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run Prettier
+        run: bun run format'
