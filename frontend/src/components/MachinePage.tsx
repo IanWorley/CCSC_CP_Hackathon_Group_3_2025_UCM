@@ -62,7 +62,8 @@ function MachinePage() {
       <div className="w-3/4 mt-8">
         <button
           className="bg-black text-white p-3 w-full font-bold rounded-xl"
-          onClick={reserve}>
+          onClick={reserve}
+        >
           Reserve
         </button>
       </div>
