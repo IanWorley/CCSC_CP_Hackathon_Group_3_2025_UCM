@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 interface MachineState {
@@ -20,7 +20,7 @@ function MachinePage() {
     state_init_time: 0,
   });
 
-  const loadMachine = () => {
+  const loadMachine = useCallback(() => {
     fetch(`/api/get_machine/${id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -29,7 +29,7 @@ function MachinePage() {
       .catch((err) => {
         console.log("BIG ERROR: ", err);
       });
-  };
+  }, [id]);
 
   const reserve = () => {
     fetch(`/api/reserve/${id}`)
