@@ -16,7 +16,6 @@ jobs:
 
       - name: Install dependencies
         run: bun install
-
         working-directory: frontend
 
       - name: Run Prettier
